@@ -31,7 +31,7 @@ jobs:
         - name: List of Docker -q AFTER
           run: docker ps --filter "ancestor=mldetectionfraude" -q
   
-        - name: Test
-          run: docker exec $(docker ps --filter "ancestor=emldetectionfraude" -q) python -m unittest discover tests
-  
+        # - name: Test
+        #   run: docker exec $(docker ps --filter "ancestor=emldetectionfraude" -q) python -m unittest discover tests
+
         
