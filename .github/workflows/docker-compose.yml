@@ -17,12 +17,18 @@ jobs:
   
         - name: Build Docker Image
           run: docker build . -t mldetectionfraude
+
+        - name: Build Docker Image2
+          run: docker build . -t collectdetectionfraude
   
         - name: List of Docker images
           run: docker image ls
   
         - name: Run Docker Container
           run: docker run -d -p 5000:5000 mldetectionfraude
+        
+        - name: Run Docker Container2
+          run: docker run -d -p 5000:5000 collectdetectionfraude
   
   
         - name: List of Docker -a AFTER
@@ -30,6 +36,9 @@ jobs:
   
         - name: List of Docker -q AFTER
           run: docker ps --filter "ancestor=mldetectionfraude" -q
+  
+        - name: List of Docker -q AFTER
+          run: docker ps --filter "ancestor=collectdetectionfraude" -q
   
         # - name: Test
         #   run: docker exec $(docker ps --filter "ancestor=emldetectionfraude" -q) python -m unittest discover tests
