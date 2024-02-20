@@ -19,7 +19,7 @@ jobs:
         #   run: docker build . -f Dockerfile -t mldetectionfraude
 
         - name: Build Docker Image2
-          run: docker build . -f Dockerfilre_collect -t collectdetectionfraude
+          run: docker build . -f Dockerfile_collect -t collectdetectionfraude
 
         - name: List of Docker images
           run: docker image ls
