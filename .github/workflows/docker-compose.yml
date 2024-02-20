@@ -16,11 +16,10 @@ jobs:
           uses: docker/setup-buildx-action@v3
   
         - name: Build Docker Image
-          run: docker build . -t mldetectionfraude -f detection_de_fraude/Dockerfile
-
+          run: docker build . -f Dockerfile -t mldetectionfraude
         - name: Build Docker Image2
-          run: docker build . -t collectdetectionfraude -f detection_de_fraude/Dockerfile_collect
-  
+          run: docker build . -f Dockerfile_collect -t collectdetectionfraude
+
         - name: List of Docker images
           run: docker image ls
   
