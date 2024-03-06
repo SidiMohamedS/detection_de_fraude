@@ -1,20 +1,24 @@
-# Use an official Python runtime as a parent image
+# Utilisez l'image Python officielle en tant qu'image de base
 FROM python:3.8-slim
 
-# Set the working directory in the container
-WORKDIR /PROJET_ML_FAUDE
+# Définir le répertoire de travail dans le conteneur
+WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY . /PROJET_ML_FAUDE
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt /app
+# Installez les dépendances pour Flask et Streamlit
+RUN pip install -r requirements.txt
 
-# Make port 5000 available to the world outside this container
+# Copiez les fichiers requis dans le conteneur
+COPY app.py /app
+COPY frontend.py /app
+
+# Configurez l'environnement Flask
+ENV FLASK_APP=app.py
+
+# Exposez les ports nécessaires
 EXPOSE 5000
+EXPOSE 8001
 
-# Define environment variable
-ENV NAME World
-
-# Run app.py when the container launches
-CMD ["python", "model_detection_fraude.py"]
+# Commande pour démarrer les applications Flask et Streamlit
+CMD ["sh", "-c", "flask run --host 0.0.0.0 --port 5000 & streamlit run --server.port 8001 frontend.py"]

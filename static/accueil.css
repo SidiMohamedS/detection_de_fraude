@@ -1,0 +1,81 @@
+/* style accueil*/
+
+.container h2{
+    color: #292525;
+   }
+   
+   #menuOptions {
+       max-width: 200px; /* Ajustez la valeur selon vos besoins */
+       float: right;
+       margin-left: auto;
+     }
+   
+     .container {
+       max-width: 100%; /* Définissez la largeur maximale de votre contenu à 100% de la largeur de la fenêtre */
+       margin: 50px auto; /* Centre la boîte dans la page et ajoute une marge en haut */
+       position:relative ; /* Position relative pour permettre le positionnement absolu à l'intérieur */
+     }
+   img {
+      /* max-width: 100%; Assurez-vous que l'image ne dépasse pas la largeur de son conteneur */
+      width: 100%; /* Étend la largeur de l'image à 100% de la largeur de son conteneur */
+      height: auto; /* Garantit que l'image conserve ses proportions originales */
+      display: block; /* Supprime l'espace en bas de l'image */
+     }
+   
+     .overlay-text {
+       position: absolute; /* Position absolue pour positionner le texte par rapport à la boîte parente */
+       top: 50%; /* Positionne le haut du texte au centre vertical */
+       left: 50%; /* Positionne la gauche du texte au centre horizontal */
+       transform: translate(-50%, -50%); /* Centre parfaitement le texte */
+       color: white; /* Couleur du texte */
+       font-size: 40px; /* Taille du texte (ajustez cette valeur selon vos préférences) */
+       font-weight: bold; /* Gras */
+       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Ombre légère pour améliorer la lisibilité */
+       text-align: center;
+     }
+   
+    
+   .section-title h2 {
+       text-align: left; /* Centre le texte à l'intérieur du titre h2 */
+       color: #161616;
+   
+   }
+   
+     .read-more-content {
+       text-align: justify; /* Alignez le contenu justifié si nécessaire */
+      /* text-align: right;
+       margin: 20px; /* Ajoutez une marge pour améliorer l'apparence */
+       color: #161616;
+     }
+   
+    
+   
+    
+   
+   
+   
+   
+   
+   
+   
+   /* style sur le pied de page*/
+   
+   /* Ajoutez ces styles dans un fichier CSS, par exemple, styles.css */
+   
+   footer {
+       background-color: #8ac2b6; /* Couleur de fond du pied de page */
+       color: #ffffff; /* Couleur du texte */
+       padding: 20px 0; /* Espacement interne du pied de page */
+   }
+   
+   footer a {
+       color: #ffffff; /* Couleur des liens dans le pied de page */
+       text-decoration: none; /* Supprime le soulignement par défaut des liens */
+   }
+   
+   footer a:hover {
+       text-decoration: underline; /* Soulignement lorsque le lien est survolé */
+   }
+   
+   
+   

@@ -1,5 +1,9 @@
-pandas 
-numpy 
-matplotlib 
-seaborn 
-scikit-learn  
+numpy
+Flask
+joblib
+scikit-learn
+pandas
+flask_mysqldb
+streamlit
+matplotlib
+seaborn
