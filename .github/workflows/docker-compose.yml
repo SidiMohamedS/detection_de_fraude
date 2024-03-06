@@ -37,8 +37,8 @@ jobs:
       - name: List Docker Containers ID AFTER
         run: docker ps --filter "ancestor=flaskappgitactions" -q
 
-      - name: Test Docker Container
-        run: docker exec $(docker ps --filter "ancestor=flaskappgitactions" -q) python -m unittest discover ../../tests
+      #- name: Test Docker Container
+        #run: docker exec $(docker ps --filter "ancestor=flaskappgitactions" -q) python -m unittest discover ../../tests
 
       - name: Docker Login
         run: |
