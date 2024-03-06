@@ -1,8 +1,8 @@
 env:
   DOCKER_USER: 'hawadioni'  # ${{secrets.hawadioni}}
   DOCKER_PASSWORD: 'Haw@0102d' # ${{ secrets.Haw@0102d }}
-  DOCKER_REPO_NAME: ${{secrets.model_detection_fraude}}
-  MON_TEST: ${{secrets.MON_TEST_PWD}}
+  DOCKER_REPO_NAME:  'model_detection_fraude' #${{secrets.model_detection_fraude}}
+ # MON_TEST: ${{secrets.MON_TEST_PWD}}
 
 on:
   push:
