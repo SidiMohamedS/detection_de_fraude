@@ -1,7 +1,7 @@
 numpy
 Flask
 joblib
-scikit-learn
+scikit-learn==1.4.1.post1
 pandas
 flask_mysqldb
 streamlit
