@@ -38,7 +38,7 @@ jobs:
         run: docker ps --filter "ancestor=flaskappgitactions" -q
 
       - name: Test Docker Container
-        run: docker exec $(docker ps --filter "ancestor=flaskappgitactions" -q) python -m unittest discover ./../../tests
+        run: docker exec $(docker ps --filter "ancestor=flaskappgitactions" -q) python -m unittest discover ../../tests
 
       - name: Docker Login
         run: |
