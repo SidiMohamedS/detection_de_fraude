@@ -1,6 +1,6 @@
 env:
   DOCKER_USER: ${{secrets.hawadioni}}
-  DOCKER_PASSWORD: ${{secrets.Haw@0102d}}
+  DOCKER_PASSWORD: "${{ secrets.Haw@0102d }}"
   DOCKER_REPO_NAME: ${{secrets.model_detection_fraude}}
   MON_TEST: ${{secrets.MON_TEST_PWD}}
 
