@@ -86,7 +86,7 @@ jobs:
         run: echo "::set-output name=date::$(Dates +'%Y-%m-%d--%M-%S')"
 
       - name: Build Docker Image with Tag
-        run: docker build . --file Dockerfile --tag $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.Dates.outputs.Dates }}
+        run: docker build . --file Dockerfile_collect --tag $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.Dates.outputs.Dates }}
 
 
       - name: Push Docker Image to Docker Hub
