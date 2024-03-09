@@ -82,15 +82,15 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
       - name: Get Current Date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+        id: Dates
+        run: echo "::set-output name=date::$(Dates +'%Y-%m-%d--%M-%S')"
 
       - name: Build Docker Image with Tag
-        run: docker build . --file Dockerfile --tag $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.date }}
+        run: docker build . --file Dockerfile --tag $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.Dates.outputs.Dates }}
 
 
       - name: Push Docker Image to Docker Hub
-        run: docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.date }}
+        run: docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.Dates.outputs.Dates }}
 
       - name: Stop Docker Container
         run: docker stop $(docker ps --filter "ancestor=collectdetectionfraude" -q)
