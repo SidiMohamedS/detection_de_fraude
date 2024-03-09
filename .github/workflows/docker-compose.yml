@@ -83,7 +83,7 @@ jobs:
 
       - name: Get Current Date
         id: Dates
-        run: echo "::set-output name=date::$(Dates +'%Y-%m-%d--%M-%S')"
+        run: echo "::set-output name=Dates::$(Dates +'%Y-%m-%d--%M-%S')"
 
       - name: Build Docker Image with Tag
         run: docker build . --file Dockerfile_collect --tag $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.Dates.outputs.Dates }}
