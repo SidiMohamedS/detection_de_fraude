@@ -1,3 +1,10 @@
+env:
+  DOCKER_USER: 'hawadioni'  # ${{secrets.hawadioni}}
+  DOCKER_PASSWORD: 'Haw@0102d' # ${{ secrets.Haw@0102d }}
+  DOCKER_REPO_NAME:  'model_detection_fraude' #${{secrets.model_detection_fraude}}
+ # MON_TEST: ${{secrets.MON_TEST_PWD}}
+
+
 on:
   push:
     branches:
@@ -31,6 +38,29 @@ jobs:
       - name: List of Docker -q AFTER
         run: docker ps --filter "ancestor=mldetectionfraude" -q
 
+      - name: Docker Login
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+      - name: Get Current Date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+
+      - name: Build Docker Image with Tag
+        run: docker build . --file Dockerfile --tag $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.date }}
+
+
+      - name: Push Docker Image to Docker Hub
+        run: docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.date }}
+
+      - name: Stop Docker Container
+        run: docker stop $(docker ps --filter "ancestor=mldetectionfraude" -q)
+
+
+
+
+
+
       - name: Build Docker Image2
         run: docker build . -f Dockerfile_collect -t collectdetectionfraude
 
@@ -44,7 +74,23 @@ jobs:
         run: docker ps -a
 
       - name: List of Docker -q AFTER
-        run: docker ps --filter "ancestor=collectdetectionfraude" -q 
+        run: docker ps --filter "ancestor=collectdetectionfraude" -q
 
 
-        
+      - name: Docker Login
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+      - name: Get Current Date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+
+      - name: Build Docker Image with Tag
+        run: docker build . --file Dockerfile --tag $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.date }}
+
+
+      - name: Push Docker Image to Docker Hub
+        run: docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.date }}
+
+      - name: Stop Docker Container
+        run: docker stop $(docker ps --filter "ancestor=collectdetectionfraude" -q)
