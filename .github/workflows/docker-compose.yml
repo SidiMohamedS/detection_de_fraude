@@ -8,10 +8,10 @@ env:
 on:
   push:
     branches:
-      - main
+      - dockerMl
   pull_request:
     branches:
-      - main
+      - dockerMl
 
 jobs:
   build:
