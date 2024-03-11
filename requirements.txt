@@ -1,0 +1,11 @@
+numpy
+Flask
+joblib
+scikit-learn==1.4.1.post1
+pandas
+flask_mysqldb
+streamlit
+matplotlib
+seaborn
+kaggle
+mysql-connector-python

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='showpredicts.css') }}">
+    <title>Flask Bulma Table</title>
+</head>
+<body style="background-color: #f5f5f5;">  <section class="section container has-text-centered">
+        <h2 class="title is-2">Résultats de la prediction</h2>  <h4 class="subtitle is-5">pour les valeurs soumises</h4>  {% if response %}
+            <table class="table is-bordered is-striped">  <thead>
+                    <tr>
+                        {% for col in response.columns %}
+                            <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in response.input_data %}
+                        <tr>
+                            {% for key, value in row.items() %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="columns mx-auto">
+                <div class="column is-6">
+                    <h2 class="title is-3">Predictions:</h2>  <p class="box has-background-success has-text-white">{{ response.fraud_predictions }}</p>
+                </div>
+            </div>
+        {% else %}
+            <div class="has-text-centered">
+                <p>Aucune donnée.</p>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="section container has-text-centered">
+        <div class="buttons">
+            <a href="{{ url_for('update_last') }}">
+                <button class="button is-primary is-rounded">Saisir la valeur prédite</button>
+            </a>
+        </div>
+    </section>
+
+</body>
+</html>

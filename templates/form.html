@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Données de prédiction</title>
+</head>
+<body>
+
+    <h3>Remplir le formulaire</h3>
+
+    <hr>
+    <div class="container">
+        <form action="{{ url_for('add') }}" method="post">
+            <div class="field">
+                <label class="label" for="step">Heure de transaction:</label>
+                <div class="control">
+                    <input class="input" type="number" id="step" name="step" placeholder="Heure de transaction">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="amount">Montant:</label>
+                <div class="control">
+                    <input class="input" type="floatformat" id="amount" name="amount" placeholder="Montant">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="oldbalanceOrg">Solde d'origine:</label>
+                <div class="control">
+                    <input class="input" type="floatformat" id="oldbalanceOrg" name="oldbalanceOrg" placeholder="Solde d'origine">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="newbalanceOrig">Nouveau solde d'origine:</label>
+                <div class="control">
+                    <input class="input" type="floatformat" id="newbalanceOrig" name="newbalanceOrig" placeholder="Nouveau solde d'origine">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="oldbalanceDest">Solde de destination avant:</label>
+                <div class="control">
+                    <input class="input" type="floatformat" id="oldbalanceDest" name="oldbalanceDest" placeholder="Solde de destination avant">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="newbalanceDest">Nouveau solde de destination:</label>
+                <div class="control">
+                    <input class="input" type="floatformat" id="newbalanceDest" name="newbalanceDest" placeholder="Nouveau solde de destination">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="type_TRANSFER">Type de transfert:</label>
+                <div class="control">
+                    <div class="select">
+                        <select id="type_TRANSFER" name="type_TRANSFER">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="origBalanceDiscrepancy">Discrepancy d'origine:</label>
+                <div class="control">
+                    <input class="input" type="floatformat" id="origBalanceDiscrepancy" name="origBalanceDiscrepancy" placeholder="Discrepancy d'origine">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="destBalanceDiscrepancy">Discrepancy de destination:</label>
+                <div class="control">
+                    <input class="input" type="floatformat" id="destBalanceDiscrepancy" name="destBalanceDiscrepancy" placeholder="Discrepancy de destination">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="vraiValeur">Vrai valeur:</label>
+                <div class="control">
+                    <input class="input" type="number" id="vraiValeur" name="vraiValeur" placeholder="Vrai valeur">
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-primary is-rounded">Ajouter</button>
+                </div>
+            </div>
+
+        </form>
+
+        <div class="buttons">
+                  <a href="{{ url_for('do_prediction') }}"><button class="button is-primary is-rounded">faire la prédiction</button></a>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='update.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <title>Renseigner la valeur predite</title>
+</head>
+<body>
+
+    <section class="container">
+        <h1 class="title">Mettre à jour la valeur predite</h1>
+        <form action="{{ url_for('update', id=id) }}" method="post">
+            <div class="field">
+                <label for="valeurPredite" class="label">Valeur prédite:</label>
+                <div class="control">
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="number" name="valeurPredite" class="input" >
+                </div>
+            </div>
+            <button type="submit" class="button">Envoyer</button>
+        </form>
+    </section>
+
+    </body>
+</html>

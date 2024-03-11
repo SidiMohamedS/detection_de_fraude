@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='accueil.css') }}">
+
+    <title>Accueil</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Accueil</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#about">À Propos <span class="sr-only">(current)</span></a>
+            </li>
+           </ul>
+        </div>
+
+            <!-- Bouton de menu à droite -->
+         <div class="ml-auto">
+          <button class="btn btn-outline-dark" type="button" data-toggle="collapse" data-target="#menuOptions" aria-expanded="false" aria-controls="menuOptions">Menu</button>
+
+         </div>
+       
+      </nav>
+
+
+<!-- Contenu de la page -->
+
+<div id="menuOptions" class="collapse">
+  <ul class="list-group">
+    <li class="list-group-item"><a href="{{ url_for('form') }}">Remplir le formulaire</a></li>
+    
+  </ul>
+</div>
+
+<div id="menuOptions" class="collapse">
+  <ul class="list-group">
+    
+    <li class="list-group-item"><a href="http://localhost:8501/" target="_blank">Visualiser</a></li>
+  </ul>  
+</div>
+<div id="menuOptions" class="collapse">
+  <ul class="list-group">
+    
+    <li class="list-group-item"><a href="{{ url_for('do_prediction') }}">Prediction</a></li>
+  </ul>
+</div>
+
+
+
+
+<div class="container">
+
+     <!-- Autres contenus de la page ici -->
+     <h2>Bienvenue sur notre plateform !</h2>
+    
+    <!-- Image sur la page d'accueil -->
+    <img src="static/Fraud-Detection.jpg" alt="Fraud-Detection">
+    <div class="overlay-text">Nos données, notre force.</br> Ensemble, sécurisons nos informations</div>
+    <p>Explorez notre univers de sécurité financière avec le pouvoir du machine learning, où l'IA détecte les fraudes avec style </p>
+    
+</div>
+
+<section id="about" class="about section-bg">
+  <div class="container" data-aos="fade-up">
+     <div class="section-title aligner">
+        <h2>À propos de nous</h2>
+        <div class="read-more-content">
+           <div class="row">
+              <div class="col-md-6 order-md-2">
+                 <img src="static/apropos.jpg" alt="À propos de nous">
+              </div>
+              <div  div class="col-md-6 order-md-1 mt-4">
+                 <p class="mb-2">Bienvenue sur <strong> notre plateforme dédiée à la classification des données de transactions financières.</strong>.</p>
+                 <p>Nous sommes des étudiants en Data Science en deuxième année de master à l'Université Internationale d'Excellence</p>
+                 <h4>Notre Mission</h4>
+                 <p>Nous avons pour objectif de développer des prédictions précises sur la nature des données que vous nous fournissez, en déterminant avec précision si elles sont considérées comme frauduleuses ou non. Notre engagement repose sur l'utilisation de modèles de machine learning pour analyser les caractéristiques subtiles des transactions financières, nous permettant ainsi de vous offrir une évaluation fiable et proactive en matière de sécurité.</p>
+                 <h4>Pourquoi une plateforme dédiée à la détection de fraude </h4>
+                 <p>une plateforme dédiée à la détection de fraude est essentielle pour protéger les entreprises et les particuliers contre les activités frauduleuses, minimiser les pertes financières, préserver la réputation de l'entreprise, se conformer aux réglementations et prendre des décisions informatisées basées sur des données fiables et précises.</p>
+                 <h4>Joignez-vous à nous dans cette passionnante aventure de l'innovation.</h4>
+                 <p>Que vous évoluiez dans le monde de la finance ou que vous proposiez des services de transfert d'argent, que vous ayez simplement envie de tester notre modèle avec vos propres données, votre expertise est précieuse. Ensemble, explorons de nouvelles voies et contribuons à rendre nos transactions plus sûres </p>
+              </div>
+           </div>
+        </div>
+     </div>
+  </div>
+</section>
+
+    <footer>
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-6">
+                      <p>&copy; 2024 Mon Site. Tous droits réservés.</p>
+                  </div>
+                  <div class="col-md-6">
+                      <p>
+                          <a href="#" class="text-light">Accueil</a> |
+                          <a href="#about" class="text-light">À propos</a> |
+                      </p>
+                  </div>
+              </div>   
+          </div>
+      </footer>      
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+</body>
+ </html>

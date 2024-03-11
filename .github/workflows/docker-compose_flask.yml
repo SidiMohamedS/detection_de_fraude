@@ -1,0 +1,96 @@
+env:
+  DOCKER_USER: 'hawadioni'  # ${{secrets.hawadioni}}
+  DOCKER_PASSWORD: 'Haw@0102d' # ${{ secrets.Haw@0102d }}
+  DOCKER_REPO_NAME:  'model_detection_fraude' #${{secrets.model_detection_fraude}}
+ # MON_TEST: ${{secrets.MON_TEST_PWD}}
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        run: docker build . -t flaskappgitactions
+
+      - name: List Docker Images
+        run: docker image ls
+
+      - name: Run Docker Container
+        run: docker run -d -p 5000:5000 flaskappgitactions
+
+      - name: List Docker Containers AFTER
+        run: docker ps -a
+
+      - name: List Docker Containers ID AFTER
+        run: docker ps --filter "ancestor=flaskappgitactions" -q
+
+      #- name: Test Docker Container
+        #run: docker exec $(docker ps --filter "ancestor=flaskappgitactions" -q) python -m unittest discover ../../tests
+
+      - name: Docker Login
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+      - name: Get Current Date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+
+      - name: Build Docker Image with Tag
+        run: docker build . --file Dockerfile --tag $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.date }}
+
+
+      - name: Push Docker Image to Docker Hub
+        run: docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.date }}
+
+      - name: Stop Docker Container
+        run: docker stop $(docker ps --filter "ancestor=flaskappgitactions" -q)
+
+
+      - name: Build Docker Image2
+        run: docker build . -t streamlitappgitactions
+      
+      - name: List Docker Images
+        run: docker image ls
+      
+      - name: Run Docker Container
+        run: docker run -d -p 5000:5000 streamlitappgitactions
+      
+      - name: List Docker Containers AFTER
+        run: docker ps -a
+      
+      - name: List Docker Containers ID AFTER
+        run: docker ps --filter "ancestor=streamlitappgitactions" -q
+      
+      # - name: Test Docker Container (commented out)
+      # run: docker exec $(docker ps --filter "ancestor=flaskappgitactions" -q) python -m unittest discover ../../tests
+      
+      - name: Docker Login
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      
+      # - name: Get Current Date
+      #   id: dates
+      #   run: echo "::set-output name=date::$(dates +'%Y-%m-%d--%M-%S')"
+      
+      - name: Build Docker Image with Tag
+        run: docker build . --file Dockerfilefrontend --tag $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.date }}
+      
+      - name: Push Docker Image to Docker Hub
+        run: docker push $DOCKER_USER/$DOCKER_REPO_NAME:${{ steps.date.outputs.dates }}
+      
+      - name: Stop Docker Container
+        run: docker stop $(docker ps --filter "ancestor=streamlitappgitactions" -q)
+      

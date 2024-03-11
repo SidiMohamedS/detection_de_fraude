@@ -1,0 +1,31 @@
+# 
+# Utilisez l'image Python officielle 3.12.2 comme base
+FROM python:3.12.2
+
+# Définissez le répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Copiez le fichier requirements.txt dans le conteneur
+COPY requirements.txt /app
+
+# Installez les dépendances pour Flask et Streamlit
+RUN pip install -r requirements.txt
+
+# Créez un dossier model dans le conteneur
+RUN mkdir /model
+
+# Copiez les fichiers requis dans le conteneur
+COPY app.py /app
+COPY preprocessed_transaction_data.csv /app
+COPY transaction_data.csv /app
+# COPY model/pipe_clf.joblib /model/app
+# Configurez l'environnement Flask
+ENV FLASK_APP=app.py
+ENV MYSQL_PORT=3306
+
+# Exposez le port 5000 pour Flask
+EXPOSE 5008
+EXPOSE $MYSQL_PORT
+
+# Lancez l'application Flask
+CMD ["python", "app.py"]
