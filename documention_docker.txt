@@ -1,0 +1,37 @@
+
+- Dockerfile_collect -> au docker du script pour la collecte
+- Dockerfilefrontend -> au docker de l'app streamlit
+- DockerfileML -> au docker du model
+- Dockerfileweb -> au docker de l'app
+Ce script Dockerfile permet de créer une image Docker pour une application Flask utilisant Streamlit. Voici une explication détaillée de chaque ligne :
+
+NB: pour des besoin de visiblibté j'ai enregistré  le modèle dans la racine du projet
+1. Image de base:
+
+FROM python:3.12.2 : Cette ligne définit l'image de base comme étant l'image Python officielle avec la version 3.12.2.
+2. Répertoire de travail:
+
+WORKDIR /app : Cette ligne définit le répertoire de travail par défaut dans le conteneur comme étant /app.
+3. Installation des dépendances:
+
+COPY requirements.txt /app : Cette ligne copie le fichier requirements.txt dans le répertoire /app du conteneur.
+RUN pip install -r requirements.txt : Cette ligne installe les dépendances Python définies dans le fichier requirements.txt
+4. Création et configuration du dossier model:
+
+RUN mkdir /model : Cette ligne crée un dossier model dans le conteneur.
+COPY preprocessed_transaction_data.csv /app : Cette ligne copie le fichier preprocessed_transaction_data.csv dans le répertoire /app du conteneur.
+COPY transaction_data.csv /app : Cette ligne copie le fichier transaction_data.csv dans le répertoire /app du conteneur.
+COPY model/pipe_clf.joblib /model/app : Cette ligne copie le fichier pipe_clf.joblib du dossier model vers /model/app dans le conteneur.
+5. Configuration de l'environnement Flask:
+
+ENV FLASK_APP=app.py : Cette ligne définit la variable d'environnement FLASK_APP avec la valeur app.py. Cela indique à Flask que le point d'entrée de l'application est le fichier app.py.
+ENV MYSQL_PORT=3306 : Cette ligne définit la variable d'environnement MYSQL_PORT avec la valeur 3306. Cette variable peut être utilisée par l'application pour se connecter à une base de données MySQL.
+6. Exposition des ports:
+
+EXPOSE 5008 : Cette ligne expose le port 5008 du conteneur. Ce port sera utilisé par l'application Flask.
+EXPOSE $MYSQL_PORT : Cette ligne expose le port spécifié par la variable d'environnement MYSQL_PORT.
+7. Lancement de l'application:
+
+CMD ["python", "app.py"] : Cette ligne définit la commande à exécuter lors du démarrage du conteneur. Cette commande lance l'application Flask en utilisant le fichier app.py.
+
+les autres docker sont fait pratiquement de la même manière

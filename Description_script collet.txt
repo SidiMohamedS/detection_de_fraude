@@ -1,30 +1,20 @@
 Description du script pour la collecte de données
 
-- Installation du package kaggle, qui est l'API Python officielle de Kaggle
-Elle permet aux utilisateurs d'interagir avec la plateforme Kaggle directement à partir de leur environnement Python. 
-L'API fournit des fonctionnalités telles que le téléchargement de jeux de données, la gestion des ensembles de données.
+1. Créer un répertoire et copier le fichier de configuration:
 
-Vous pouvez installer l'API Kaggle en utilisant la commande !pip install kaggle dans un environnement compatible avec Python (comme Jupyter notebooks, Google Colab, etc.). Une fois installée, vous devrez configurer l'API 
-avec vos informations d'identification Kaggle en utilisant un fichier kaggle.json contenant votre nom d'utilisateur et votre clé d'API.
+mkdir ~/.kaggle: Cette ligne crée un répertoire nommé .kaggle dans le répertoire personnel de l'utilisateur (~). Le point (.) devant le nom du répertoire indique qu'il est caché.
+cp kaggle.json ~/.kaggle/: Cette ligne copie le fichier kaggle.json dans le répertoire nouvellement créé ~/.kaggle. Ce fichier contient probablement votre clé API Kaggle, nécessaire pour accéder aux données.
+2. Modifier les permissions du fichier de configuration:
 
-Création d'un répertoire qui va contenir le fichier à télécharger
-Télécharger le fichier kaggle.json depuis votre ordinateur utilisateur
+chmod 600 ~/.kaggle: Cette ligne modifie les permissions du fichier ~/.kaggle pour en restreindre l'accès. Le code 600 attribue les permissions suivantes :
+Propriétaire (vous) : lecture, écriture
+Groupe : aucun accès
+Autres : aucun accès
+3. Télécharger l'ensemble de données Kaggle:
 
-!mkdir -p /root/.kaggle : Cette commande crée le répertoire .kaggle dans le répertoire /root. L'option -p permet également de créer les répertoires parents nécessaires au besoin.
+kaggle datasets download -d mlg-uIB ealaxi/paysim1: Cette ligne utilise la commande kaggle datasets download pour télécharger l'ensemble de données nommé "paysim1" de l'utilisateur "ealaxi" et du groupe "mlg-uIB".
+4. Décompresser l'archive (si nécessaire):
 
-!mv kaggle.json /root/.kaggle/kaggle.json : Cette commande déplace le fichier kaggle.json vers le répertoire /root/.kaggle/. Elle renomme également le fichier, le plaçant dans le bon emplacement pour être utilisé par l'API Kaggle.
-
-Ces commandes sont couramment utilisées lors de la configuration de l'API Kaggle dans un environnement tel que Google Colab.
-Une fois que le fichier kaggle.json est correctement configuré dans le répertoire .kaggle, 
-vous pouvez utiliser l'API Kaggle pour télécharger des jeux de données en indiquant le nom de l'auteur et du dataset.
-
-
-
-- Définir les autorisations du fichier kaggle.json de sorte qu'il soit accessible uniquement par le propriétaire (root) et personne d'autre, avec la commande suivante :
-!chmod 600 /root/.kaggle/kaggle.json
-
-les données téléchargées sont sous forme de fichier ZIP. Utilisez la commande !7z e paysim1.zip -odata pour décompresser la données et le charger dans le repertoire data
-ensuite on lit le fichier avec pandas
-
+unzip paysim1: Cette ligne suppose que l'ensemble de données téléchargé est compressé au format ZIP. Si c'est le cas, cette ligne décompresse le fichier "paysim1.zip" dans le répertoire courant.
 
 
